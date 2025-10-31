@@ -1,0 +1,121 @@
+// Modal styles
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+
+    .modal__content {
+      transform: scale(1);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1001;
+    background-color: $background-2;
+    border-radius: $spacing-md;
+    padding: $spacing-2xl;
+    max-width: 480px;
+    width: calc(100% - 32px);
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+
+    @include mobile {
+      padding: $spacing-xl;
+      max-width: calc(100% - 32px);
+    }
+  }
+
+  &__icon {
+    margin: 0 auto $spacing-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: scaleIn 0.5s ease 0.2s backwards;
+
+    svg {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: $white;
+    margin-bottom: $spacing-md;
+
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__message {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: 1.5;
+    color: $secondary;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__button {
+    background-color: $accent;
+    color: $dark-background;
+    border: none;
+    border-radius: 8px;
+    padding: 14px $spacing-2xl;
+    font-family: 'SF Pro Display', $font-family-base;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    width: 100%;
+    height: 48px;
+    @include transition(background-color);
+
+    &:hover {
+      background-color: darken($accent, 10%);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

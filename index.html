@@ -27,12 +27,16 @@
             <p class="hero__subtitle">Stop wasting prompts. Start crafting stories that go viral.</p>
 
             <form class="hero__form" id="heroForm">
-              <input
-                type="email"
-                class="hero__input"
-                placeholder="Email"
-                required
-              >
+              <div class="form-field">
+                <input
+                  type="email"
+                  name="email"
+                  class="hero__input peer"
+                  placeholder="Email"
+                  required
+                >
+                <p class="form-field__error peer-invalid:block">Please enter a valid email address</p>
+              </div>
               <button type="submit" class="hero__button">Get the Bundle</button>
             </form>
           </div>
@@ -66,17 +70,37 @@
         </ul>
 
         <form class="solution__form" id="solutionForm">
-          <input
-            type="email"
-            class="solution__input"
-            placeholder="Email"
-            required
-          >
+          <div class="form-field">
+            <input
+              type="email"
+              name="email"
+              class="solution__input peer"
+              placeholder="Email"
+              required
+            >
+            <p class="form-field__error peer-invalid:block">Please enter a valid email address</p>
+          </div>
           <button type="submit" class="solution__button">Get the Bundle</button>
         </form>
       </section>
     </div>
   </main>
+
+  <!-- Confirmation Modal -->
+  <div class="modal" id="confirmationModal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <div class="modal__icon">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="32" fill="#00FF94"/>
+          <path d="M20 32L28 40L44 24" stroke="#0A0A0A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="modal__title">You're All Set!</h2>
+      <p class="modal__message">Check your inbox – your AI Creator Bundle is on its way. Get ready to create content that actually goes viral.</p>
+      <button class="modal__button" id="modalCloseButton">Got it!</button>
+    </div>
+  </div>
 
   <script type="module" src="/src/js/main.js"></script>
 </body>

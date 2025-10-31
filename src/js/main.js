@@ -1,21 +1,73 @@
-// Form handling
-const form = document.getElementById('contactForm');
-const formMessage = document.getElementById('formMessage');
+// Modal handling
+const modal = document.getElementById('confirmationModal');
+const modalCloseButton = document.getElementById('modalCloseButton');
+const modalOverlay = modal?.querySelector('.modal__overlay');
 
-if (form) {
+function showModal() {
+  if (modal) {
+    modal.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function hideModal() {
+  if (modal) {
+    modal.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close modal on button click
+modalCloseButton?.addEventListener('click', hideModal);
+
+// Close modal on overlay click
+modalOverlay?.addEventListener('click', hideModal);
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal?.classList.contains('is-active')) {
+    hideModal();
+  }
+});
+
+// Form handling for both forms
+const heroForm = document.getElementById('heroForm');
+const solutionForm = document.getElementById('solutionForm');
+
+function handleFormSubmit(form) {
+  const emailInput = form.querySelector('input[type="email"]');
+
+  // Mark input as touched on blur for validation
+  emailInput.addEventListener('blur', () => {
+    if (emailInput.value.length > 0) {
+      emailInput.classList.add('touched');
+    }
+  });
+
+  // Remove touched class on focus to reset validation state
+  emailInput.addEventListener('focus', () => {
+    emailInput.classList.remove('touched');
+  });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Get form data
     const formData = new FormData(form);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message') || ''
-    };
+    const email = formData.get('email');
+
+    // Check HTML5 validity
+    if (!emailInput.checkValidity()) {
+      emailInput.classList.add('touched');
+      emailInput.focus();
+      return;
+    }
+
+    const data = { email };
 
     // Disable submit button during submission
     const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
 
@@ -23,32 +75,34 @@ if (form) {
       // Simulate API call - Replace this with your actual API endpoint
       await simulateAPICall(data);
 
-      // Show success message
-      showMessage('Thank you! We\'ll be in touch soon.', 'success');
+      // Show confirmation modal
+      showModal();
 
-      // Reset form
+      // Reset form and clear states
       form.reset();
+      emailInput.classList.remove('touched');
     } catch (error) {
-      // Show error message
-      showMessage('Oops! Something went wrong. Please try again.', 'error');
+      // Show error state
+      emailInput.classList.add('touched');
+      emailInput.setCustomValidity('Submission failed. Please try again.');
+      emailInput.reportValidity();
+      emailInput.setCustomValidity('');
       console.error('Form submission error:', error);
     } finally {
       // Re-enable submit button
       submitButton.disabled = false;
-      submitButton.textContent = 'Join Waitlist';
+      submitButton.textContent = originalText;
     }
   });
 }
 
-// Show message helper
-function showMessage(text, type) {
-  formMessage.textContent = text;
-  formMessage.className = `form__message visible ${type}`;
+// Initialize both forms
+if (heroForm) {
+  handleFormSubmit(heroForm);
+}
 
-  // Hide message after 5 seconds
-  setTimeout(() => {
-    formMessage.classList.remove('visible');
-  }, 5000);
+if (solutionForm) {
+  handleFormSubmit(solutionForm);
 }
 
 // Simulate API call (replace with your actual API endpoint)

@@ -2,6 +2,7 @@
 @import 'variables';
 @import 'mixins';
 @import 'form';
+@import 'modal';
 
 // CSS Reset & Base styles
 *,
@@ -55,6 +56,78 @@ img {
   display: flex;
   flex-direction: column;
   background-color: $dark-background;
+}
+
+// Form field wrapper with Tailwind-style peer states
+.form-field {
+  position: relative;
+  flex: 1;
+
+  &__error {
+    display: none;
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    color: #ff6b6b;
+    margin-top: 6px;
+    padding-left: 4px;
+  }
+}
+
+// Peer modifiers (Tailwind-inspired)
+.peer {
+  &:invalid:not(:placeholder-shown) {
+    ~ .form-field__error {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+  }
+
+  // Invalid state
+  &:invalid:not(:placeholder-shown):not(:focus) {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 4px 16px rgba(255, 107, 107, 0.2) !important;
+  }
+
+  // Valid state
+  &:valid:not(:placeholder-shown) {
+    border-color: rgba(0, 255, 148, 0.5) !important;
+    box-shadow: 0 4px 16px rgba(0, 255, 148, 0.15) !important;
+  }
+
+  // Focus state overrides
+  &:focus {
+    border-color: $accent !important;
+    box-shadow: 0 4px 16px rgba(244, 160, 49, 0.25) !important;
+  }
+
+  // Touched state for manual validation
+  &.touched:invalid {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 4px 16px rgba(255, 107, 107, 0.2) !important;
+    animation: shake 0.4s ease;
+
+    ~ .form-field__error {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
 }
 
 // Content wrapper
@@ -158,24 +231,36 @@ img {
   }
 
   &__input {
-    flex: 1;
+    width: 100%;
     background-color: $white;
-    border: none;
+    border: 2px solid transparent;
     border-radius: 8px;
     padding: 14px 16px;
     font-family: $font-family-base;
     font-size: $font-size-base;
     color: $dark-background;
     height: 48px;
+    @include transition(all);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
     &::placeholder {
       color: $dark-background;
-      opacity: 0.6;
+      opacity: 0.5;
+      @include transition(opacity);
+    }
+
+    &:hover:not(:focus):not(:invalid) {
+      box-shadow: 0 4px 12px rgba(244, 160, 49, 0.15);
+      border-color: rgba(244, 160, 49, 0.2);
     }
 
     &:focus {
-      outline: 2px solid $accent;
-      outline-offset: 2px;
+      outline: none;
+      transform: translateY(-1px);
+
+      &::placeholder {
+        opacity: 0.3;
+      }
     }
   }
 
@@ -337,23 +422,36 @@ img {
   }
 
   &__input {
+    width: 100%;
     background-color: $white;
-    border: none;
+    border: 2px solid transparent;
     border-radius: 8px;
     padding: 14px 16px;
     font-family: $font-family-base;
     font-size: $font-size-base;
     color: $dark-background;
     height: 48px;
+    @include transition(all);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
     &::placeholder {
       color: $dark-background;
-      opacity: 0.6;
+      opacity: 0.5;
+      @include transition(opacity);
+    }
+
+    &:hover:not(:focus):not(:invalid) {
+      box-shadow: 0 4px 12px rgba(244, 160, 49, 0.15);
+      border-color: rgba(244, 160, 49, 0.2);
     }
 
     &:focus {
-      outline: 2px solid $accent;
-      outline-offset: 2px;
+      outline: none;
+      transform: translateY(-1px);
+
+      &::placeholder {
+        opacity: 0.3;
+      }
     }
   }
 
