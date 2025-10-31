@@ -1,4 +1,17 @@
-// Responsive breakpoint mixins - Mobile first approach
+// Responsive breakpoint mixins - Desktop first approach (max-width for mobile overrides)
+@mixin mobile {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
+
+// Legacy mixins for backwards compatibility
 @mixin sm {
   @media (min-width: $breakpoint-sm) {
     @content;

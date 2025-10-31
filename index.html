@@ -3,95 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Viral AI Content Creator Bundle - Create engaging content with AI">
-  <title>Viral AI Content Creator Bundle</title>
+  <meta name="description" content="The Free AI Creator Bundle That Actually Works - Stop wasting prompts. Start crafting stories that go viral.">
+  <title>Viral AI Content Creator Bundle - Free AI Creator Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles/main.scss">
 </head>
 <body>
   <main class="landing-page">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <h1 class="hero__title">Create Viral Content with AI</h1>
-        <p class="hero__subtitle">Transform your ideas into engaging content that resonates with your audience</p>
-      </div>
-    </section>
+    <div class="content-wrapper">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero__content">
+          <p class="hero__creators">
+            Created by <a href="https://www.linkedin.com/in/evgeny-shkuratov-b34a99174/" target="_blank" rel="noopener noreferrer" class="hero__creator-link">Evgeny Shkuratov</a> & <a href="https://www.linkedin.com/in/georgekachanouski/" target="_blank" rel="noopener noreferrer" class="hero__creator-link">George Kachanouski</a>
+          </p>
 
-    <!-- Features Section -->
-    <section class="features">
-      <div class="container">
-        <h2 class="section-title">Why Choose Our Bundle?</h2>
-        <div class="features__grid">
-          <div class="feature-card">
-            <h3 class="feature-card__title">AI-Powered</h3>
-            <p class="feature-card__description">Leverage cutting-edge AI to generate content ideas</p>
-          </div>
-          <div class="feature-card">
-            <h3 class="feature-card__title">Save Time</h3>
-            <p class="feature-card__description">Create content in minutes, not hours</p>
-          </div>
-          <div class="feature-card">
-            <h3 class="feature-card__title">Boost Engagement</h3>
-            <p class="feature-card__description">Proven strategies to increase your reach</p>
+          <div class="hero__main">
+            <h1 class="hero__title">
+              <span class="hero__title-highlight">The</span> Free AI Creator Bundle <span class="hero__title-highlight">That Actually Works</span>
+            </h1>
+            <p class="hero__subtitle">Stop wasting prompts. Start crafting stories that go viral.</p>
+
+            <form class="hero__form" id="heroForm">
+              <input
+                type="email"
+                class="hero__input"
+                placeholder="Email"
+                required
+              >
+              <button type="submit" class="hero__button">Get the Bundle</button>
+            </form>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- CTA Section with Form -->
-    <section class="cta">
-      <div class="container">
-        <h2 class="section-title">Get Early Access</h2>
-        <p class="cta__description">Join the waitlist and be the first to know when we launch</p>
+        <div class="hero__image">
+          <img src="https://www.figma.com/api/mcp/asset/8f7bb9cf-3b32-4a18-84b1-6d1014697c14" alt="Viral AI Content Creator Bundle" />
+        </div>
+      </section>
 
-        <form class="form" id="contactForm">
-          <div class="form__group">
-            <label for="name" class="form__label">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="form__input"
-              placeholder="Your name"
-              required
-            >
-          </div>
+      <!-- Problem Section -->
+      <section class="problem">
+        <h2 class="problem__title">Why Most AI Creators Still Fail and How You Can Stand Out</h2>
+        <div class="problem__content">
+          <p class="problem__text">Let's be honest. <span class="problem__text-highlight">90% of AI-generated content feels empty</span></p>
+          <p class="problem__text">You've got the tools, but not the system. You jump from prompt to prompt, hoping for a spark.</p>
+          <p class="problem__text">Instead, you get random results, wasted hours, and that sinking <span class="problem__text-highlight">feeling of "Why doesn't it look like theirs?"</span></p>
+        </div>
+      </section>
 
-          <div class="form__group">
-            <label for="email" class="form__label">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form__input"
-              placeholder="your@email.com"
-              required
-            >
-          </div>
+      <!-- Solution Section -->
+      <section class="solution">
+        <h2 class="solution__title">That's why we built this free bundle. To fix exactly that</h2>
+        <p class="solution__subtitle">This bundle will help you:</p>
 
-          <div class="form__group">
-            <label for="message" class="form__label">Tell us about your content goals (optional)</label>
-            <textarea
-              id="message"
-              name="message"
-              class="form__textarea"
-              placeholder="What type of content are you creating?"
-              rows="4"
-            ></textarea>
-          </div>
+        <ul class="solution__list">
+          <li class="solution__item">How to use AI like a creative partner, not a slot machine.</li>
+          <li class="solution__item">The exact storytelling chains that make short films go viral.</li>
+          <li class="solution__item">Proven prompt structures for image styles and scenarios that deliver consistent cinematic results.</li>
+          <li class="solution__item">And my breakdown of "10 Reasons Why These Short Films Exploded Online."</li>
+        </ul>
 
-          <button type="submit" class="btn btn--primary">Join Waitlist</button>
-          <div class="form__message" id="formMessage"></div>
+        <form class="solution__form" id="solutionForm">
+          <input
+            type="email"
+            class="solution__input"
+            placeholder="Email"
+            required
+          >
+          <button type="submit" class="solution__button">Get the Bundle</button>
         </form>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 Viral AI Content Creator Bundle. All rights reserved.</p>
-      </div>
-    </footer>
+      </section>
+    </div>
   </main>
 
   <script type="module" src="/src/js/main.js"></script>

@@ -1,24 +1,31 @@
-// Colors - Update these to match your Figma design
-$primary-color: #6366f1;
-$primary-dark: #4f46e5;
-$secondary-color: #8b5cf6;
-$accent-color: #ec4899;
+// Colors - Matching Figma design
+$dark-background: #0e070e;
+$background-2: #262026;
+$white: #ffffff;
+$accent: #f4a031;
+$secondary: #f3b9b9;
 
-$text-primary: #1f2937;
-$text-secondary: #6b7280;
+// Legacy color variables
+$primary-color: $accent;
+$primary-dark: darken($accent, 10%);
+$secondary-color: $secondary;
+$accent-color: $accent;
+
+$text-primary: $white;
+$text-secondary: $secondary;
 $text-light: #9ca3af;
 
-$bg-primary: #ffffff;
-$bg-secondary: #f9fafb;
-$bg-dark: #111827;
+$bg-primary: $dark-background;
+$bg-secondary: $background-2;
+$bg-dark: $dark-background;
 
 $border-color: #e5e7eb;
 $success-color: #10b981;
 $error-color: #ef4444;
 
-// Typography - Update to match your Figma fonts
-$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-$font-family-heading: $font-family-base;
+// Typography - Matching Figma fonts
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading: 'Times Now', 'Times New Roman', serif;
 
 $font-size-xs: 0.75rem;    // 12px
 $font-size-sm: 0.875rem;   // 14px
