@@ -1,0 +1,118 @@
+// Form styles
+.form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  &__group {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $text-primary;
+  }
+
+  &__input,
+  &__textarea {
+    @include input-reset;
+    @include transition(border-color, box-shadow);
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border: 2px solid $border-color;
+    border-radius: $border-radius-md;
+    font-size: $font-size-base;
+    background-color: $bg-primary;
+    color: $text-primary;
+
+    &::placeholder {
+      color: $text-light;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+
+    &:invalid:not(:placeholder-shown) {
+      border-color: $error-color;
+    }
+
+    &:valid:not(:placeholder-shown) {
+      border-color: $success-color;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  &__message {
+    margin-top: $spacing-md;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-md;
+    font-size: $font-size-sm;
+    text-align: center;
+    opacity: 0;
+    transition: opacity $transition-base;
+
+    &.visible {
+      opacity: 1;
+    }
+
+    &.success {
+      background-color: rgba($success-color, 0.1);
+      color: darken($success-color, 10%);
+      border: 1px solid rgba($success-color, 0.3);
+    }
+
+    &.error {
+      background-color: rgba($error-color, 0.1);
+      color: darken($error-color, 10%);
+      border: 1px solid rgba($error-color, 0.3);
+    }
+  }
+}
+
+// Button styles
+.btn {
+  @include button-reset;
+  @include transition(background-color, transform, box-shadow);
+  display: inline-block;
+  padding: $spacing-sm $spacing-xl;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+    box-shadow: $shadow-md;
+
+    &:hover {
+      background-color: $primary-dark;
+      box-shadow: $shadow-lg;
+    }
+
+    &:disabled {
+      background-color: $text-light;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
+
+  &--full {
+    width: 100%;
+  }
+}

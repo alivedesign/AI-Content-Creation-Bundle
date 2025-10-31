@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Viral AI Content Creator Bundle - Create engaging content with AI">
+  <title>Viral AI Content Creator Bundle</title>
+  <link rel="stylesheet" href="/src/styles/main.scss">
+</head>
+<body>
+  <main class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero__title">Create Viral Content with AI</h1>
+        <p class="hero__subtitle">Transform your ideas into engaging content that resonates with your audience</p>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">Why Choose Our Bundle?</h2>
+        <div class="features__grid">
+          <div class="feature-card">
+            <h3 class="feature-card__title">AI-Powered</h3>
+            <p class="feature-card__description">Leverage cutting-edge AI to generate content ideas</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="feature-card__title">Save Time</h3>
+            <p class="feature-card__description">Create content in minutes, not hours</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="feature-card__title">Boost Engagement</h3>
+            <p class="feature-card__description">Proven strategies to increase your reach</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section with Form -->
+    <section class="cta">
+      <div class="container">
+        <h2 class="section-title">Get Early Access</h2>
+        <p class="cta__description">Join the waitlist and be the first to know when we launch</p>
+
+        <form class="form" id="contactForm">
+          <div class="form__group">
+            <label for="name" class="form__label">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form__input"
+              placeholder="Your name"
+              required
+            >
+          </div>
+
+          <div class="form__group">
+            <label for="email" class="form__label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form__input"
+              placeholder="your@email.com"
+              required
+            >
+          </div>
+
+          <div class="form__group">
+            <label for="message" class="form__label">Tell us about your content goals (optional)</label>
+            <textarea
+              id="message"
+              name="message"
+              class="form__textarea"
+              placeholder="What type of content are you creating?"
+              rows="4"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Join Waitlist</button>
+          <div class="form__message" id="formMessage"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 Viral AI Content Creator Bundle. All rights reserved.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

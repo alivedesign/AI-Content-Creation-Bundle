@@ -1,0 +1,167 @@
+// Import variables and mixins first
+@import 'variables';
+@import 'mixins';
+@import 'form';
+
+// CSS Reset & Base styles
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $text-primary;
+  background-color: $bg-primary;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+// Container
+.container {
+  @include container;
+}
+
+// Section title
+.section-title {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  color: $text-primary;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+}
+
+// Landing page layout
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Hero section
+.hero {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  color: white;
+  padding: $spacing-3xl 0;
+  text-align: center;
+
+  @include md {
+    padding: $spacing-4xl 0;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-lg;
+    line-height: 1.2;
+
+    @include md {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include md {
+      font-size: $font-size-xl;
+    }
+  }
+}
+
+// Features section
+.features {
+  padding: $spacing-3xl 0;
+  background-color: $bg-secondary;
+
+  @include md {
+    padding: $spacing-4xl 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+      gap: $spacing-2xl;
+    }
+  }
+}
+
+.feature-card {
+  background-color: $bg-primary;
+  padding: $spacing-xl;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  text-align: center;
+  @include transition(transform, box-shadow);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-md;
+    color: $primary-color;
+  }
+
+  &__description {
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+}
+
+// CTA section
+.cta {
+  padding: $spacing-3xl 0;
+
+  @include md {
+    padding: $spacing-4xl 0;
+  }
+
+  &__description {
+    text-align: center;
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    margin-bottom: $spacing-2xl;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Footer
+.footer {
+  margin-top: auto;
+  padding: $spacing-2xl 0;
+  background-color: $bg-dark;
+  color: white;
+  text-align: center;
+  font-size: $font-size-sm;
+}
