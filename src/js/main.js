@@ -1,3 +1,5 @@
+import { supabase } from './supabase.js';
+
 // Modal handling
 const modal = document.getElementById('confirmationModal');
 const modalCloseButton = document.getElementById('modalCloseButton');
@@ -34,7 +36,7 @@ document.addEventListener('keydown', (e) => {
 const heroForm = document.getElementById('heroForm');
 const solutionForm = document.getElementById('solutionForm');
 
-function handleFormSubmit(form) {
+function handleFormSubmit(form, formSource) {
   const emailInput = form.querySelector('input[type="email"]');
 
   // Mark input as touched on blur for validation
@@ -63,7 +65,10 @@ function handleFormSubmit(form) {
       return;
     }
 
-    const data = { email };
+    const data = {
+      email,
+      source: formSource
+    };
 
     // Disable submit button during submission
     const submitButton = form.querySelector('button[type="submit"]');
@@ -72,8 +77,8 @@ function handleFormSubmit(form) {
     submitButton.textContent = 'Submitting...';
 
     try {
-      // Simulate API call - Replace this with your actual API endpoint
-      await simulateAPICall(data);
+      // Submit to Supabase
+      await submitEmailToSupabase(data);
 
       // Show confirmation modal
       showModal();
@@ -96,51 +101,33 @@ function handleFormSubmit(form) {
   });
 }
 
-// Initialize both forms
+// Initialize both forms with source tracking
 if (heroForm) {
-  handleFormSubmit(heroForm);
+  handleFormSubmit(heroForm, 'hero');
 }
 
 if (solutionForm) {
-  handleFormSubmit(solutionForm);
+  handleFormSubmit(solutionForm, 'solution');
 }
 
-// Simulate API call (replace with your actual API endpoint)
-function simulateAPICall(data) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // Log the data (in production, you'd send this to your backend)
-      console.log('Form submitted:', data);
-
-      // Simulate success (90% success rate for demo)
-      if (Math.random() > 0.1) {
-        resolve();
-      } else {
-        reject(new Error('Random error for demo'));
+// Submit email to Supabase database
+async function submitEmailToSupabase(data) {
+  const { error } = await supabase
+    .from('email_signups')
+    .insert([
+      {
+        email: data.email,
+        source: data.source
       }
-    }, 1500);
-  });
-}
+    ]);
 
-// TODO: Replace simulateAPICall with your actual API integration
-// Example with fetch:
-/*
-async function submitToAPI(data) {
-  const response = await fetch('https://your-api-endpoint.com/submit', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data)
-  });
-
-  if (!response.ok) {
-    throw new Error('API request failed');
+  if (error) {
+    console.error('Supabase error:', error);
+    throw new Error(`Failed to save email: ${error.message}`);
   }
 
-  return response.json();
+  console.log('Email successfully saved to Supabase:', data);
 }
-*/
 
 // Smooth scroll for anchor links (if you add navigation)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
