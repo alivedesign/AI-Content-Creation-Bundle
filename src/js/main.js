@@ -113,7 +113,7 @@ if (solutionForm) {
 // Submit email to Supabase database
 async function submitEmailToSupabase(data) {
   const { error } = await supabase
-    .from('email_signups')
+    .from('email_submissions')
     .insert([
       {
         email: data.email,
