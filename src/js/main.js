@@ -1,5 +1,16 @@
 import { supabase } from './supabase.js';
 
+// Device detection helper
+function getDeviceType() {
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isMobile = /mobile|android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+  const isTablet = /ipad|android(?!.*mobile)|tablet/i.test(userAgent);
+
+  if (isTablet) return 'tablet';
+  if (isMobile) return 'mobile';
+  return 'desktop';
+}
+
 // Modal handling
 const modal = document.getElementById('confirmationModal');
 const modalCloseButton = document.getElementById('modalCloseButton');
@@ -67,7 +78,8 @@ function handleFormSubmit(form, formSource) {
 
     const data = {
       email,
-      source: formSource
+      source: formSource,
+      device: getDeviceType()
     };
 
     // Disable submit button during submission
@@ -117,7 +129,8 @@ async function submitEmailToSupabase(data) {
     .insert([
       {
         email: data.email,
-        source: data.source
+        source: data.source,
+        device: data.device
       }
     ]);
 
